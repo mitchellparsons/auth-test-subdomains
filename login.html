@@ -1,0 +1,43 @@
+<html>
+  <head>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+      <body>
+        <p>
+          <a href="http://mywebsite.com:3000">Homepage</a>
+          <a href="http://app1.mywebsite.com:3000">App1</a>
+          <a href="http://login.mywebsite.com:3000">Login</a>
+          <a href="http://api.webapp.com:3000">api</a>
+        </p>
+        <hr>
+        Username:<br>
+        <input id="username" type="text" value="username"><br>
+        Password:<br>
+        <input id="password" type="text" value="password"><br>
+        <input id="submit" type="submit" value="Login">
+      </body>
+
+      <script>
+        $('#submit').click(() => {
+          console.log('login!')
+          let username = $('#username').val()
+          let password = $('#password').val()
+          axios.post('http://api.webapp.com:3000/auth/login', {
+            username,
+            password  
+          }, {
+            withCredentials: true
+          })
+          .then(function (response) {
+            console.log(response)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+        })
+  
+      </script>
+  </body>
+</html>
